@@ -1,0 +1,74 @@
+{
+  "2026-W12": {
+    "clicks": 468,
+    "impressions": 21812,
+    "ctr": 2.15,
+    "position": 8.6
+  },
+  "2026-W13": {
+    "clicks": 535,
+    "impressions": 21134,
+    "ctr": 2.53,
+    "position": 7.9
+  },
+  "2026-W14": {
+    "clicks": 539,
+    "impressions": 20162,
+    "ctr": 2.67,
+    "position": 8.5
+  },
+  "2026-W15": {
+    "clicks": 633,
+    "impressions": 23006,
+    "ctr": 2.75,
+    "position": 7.9
+  },
+  "2026-W16": {
+    "clicks": 672,
+    "impressions": 24782,
+    "ctr": 2.71,
+    "position": 7.8
+  },
+  "2026-W17": {
+    "clicks": 687,
+    "impressions": 28405,
+    "ctr": 2.42,
+    "position": 8.6
+  },
+  "2026-W18": {
+    "clicks": 754,
+    "impressions": 27906,
+    "ctr": 2.7,
+    "position": 7.8
+  },
+  "2026-W19": {
+    "clicks": 727,
+    "impressions": 28128,
+    "ctr": 2.58,
+    "position": 9.2
+  },
+  "2026-W20": {
+    "clicks": 916,
+    "impressions": 27816,
+    "ctr": 3.29,
+    "position": 7.7
+  },
+  "2026-W21": {
+    "clicks": 825,
+    "impressions": 25199,
+    "ctr": 3.27,
+    "position": 8.9
+  },
+  "2026-W22": {
+    "clicks": 818,
+    "impressions": 28520,
+    "ctr": 2.87,
+    "position": 8.1
+  },
+  "2026-W23": {
+    "clicks": 92,
+    "impressions": 4797,
+    "ctr": 1.92,
+    "position": 6.3
+  }
+}

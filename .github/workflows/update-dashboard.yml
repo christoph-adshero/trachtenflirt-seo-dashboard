@@ -1,0 +1,59 @@
+name: Update SEO Dashboard
+
+on:
+  schedule:
+    # Jeden Montag 05:30 UTC (07:30 Berlin) – nach Tagesabschluss der GSC-Daten
+    - cron: "30 5 * * 1"
+  workflow_dispatch: {}   # manuelles Auslösen per Button möglich
+
+permissions:
+  contents: write
+  pages: write
+  id-token: write
+
+concurrency:
+  group: dashboard
+  cancel-in-progress: false
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+
+      - name: Generate dashboard
+        env:
+          GSC_CLIENT_ID: ${{ secrets.GSC_CLIENT_ID }}
+          GSC_CLIENT_SECRET: ${{ secrets.GSC_CLIENT_SECRET }}
+          GSC_REFRESH_TOKEN: ${{ secrets.GSC_REFRESH_TOKEN }}
+          GSC_SITE_URL: ${{ secrets.GSC_SITE_URL }}
+        run: python3 generate.py
+
+      - name: Commit updated dashboard & history
+        run: |
+          git config user.name "seo-dashboard-bot"
+          git config user.email "actions@github.com"
+          git add index.html data/history.json
+          git commit -m "Dashboard-Update $(date -u +%Y-%m-%d)" || echo "Keine Änderungen"
+          git push
+
+  deploy:
+    needs: build
+    runs-on: ubuntu-latest
+    environment:
+      name: github-pages
+      url: ${{ steps.deployment.outputs.page_url }}
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          ref: main
+      - uses: actions/configure-pages@v5
+      - uses: actions/upload-pages-artifact@v3
+        with:
+          path: "."
+      - id: deployment
+        uses: actions/deploy-pages@v4

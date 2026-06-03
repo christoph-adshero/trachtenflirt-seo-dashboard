@@ -1,0 +1,189 @@
+<!doctype html>
+<html lang="de">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Trachtenflirt · SEO Dashboard</title>
+<script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.1/dist/chart.umd.min.js"></script>
+<style>
+  :root{--red:#c00000;--ink:#1a1a1a;--mut:#6b7280;--bg:#f6f7f9;--card:#fff;--ok:#1b9500;--bad:#c72e2f;--line:#e5e7eb}
+  *{box-sizing:border-box}
+  body{margin:0;font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,Helvetica,Arial,sans-serif;background:var(--bg);color:var(--ink);-webkit-font-smoothing:antialiased}
+  .wrap{max-width:1180px;margin:0 auto;padding:24px 20px 60px}
+  header{display:flex;align-items:baseline;justify-content:space-between;flex-wrap:wrap;gap:8px;margin-bottom:24px}
+  h1{font-size:22px;margin:0;font-weight:800;letter-spacing:-.02em}
+  h1 .dot{color:var(--red)}
+  .meta{color:var(--mut);font-size:13px}
+  .grid{display:grid;gap:16px}
+  .kpis{grid-template-columns:repeat(4,1fr)}
+  @media(max-width:760px){.kpis{grid-template-columns:repeat(2,1fr)}}
+  .card{background:var(--card);border:1px solid var(--line);border-radius:14px;padding:18px}
+  .card h2{font-size:13px;text-transform:uppercase;letter-spacing:.04em;color:var(--mut);margin:0 0 12px}
+  .kpi .label{font-size:12px;color:var(--mut);text-transform:uppercase;letter-spacing:.03em}
+  .kpi .val{font-size:30px;font-weight:800;letter-spacing:-.02em;margin:6px 0 2px}
+  .delta{font-size:13px;font-weight:700}
+  .up{color:var(--ok)} .down{color:var(--bad)} .flat{color:var(--mut)}
+  .section{margin-top:22px}
+  table{width:100%;border-collapse:collapse;font-size:13.5px}
+  th,td{text-align:left;padding:9px 10px;border-bottom:1px solid var(--line)}
+  th{font-size:11px;text-transform:uppercase;letter-spacing:.03em;color:var(--mut);font-weight:700}
+  td.num,th.num{text-align:right;font-variant-numeric:tabular-nums}
+  tr:last-child td{border-bottom:none}
+  .kw{font-weight:600}
+  .pill{display:inline-block;padding:2px 8px;border-radius:999px;font-size:11px;font-weight:700}
+  .pill.warn{background:#fff3cd;color:#8a6d00}
+  .pill.hot{background:#fde0e0;color:var(--bad)}
+  .two{grid-template-columns:1fr 1fr}
+  @media(max-width:760px){.two{grid-template-columns:1fr}}
+  .muted{color:var(--mut)}
+  .arrow-up::before{content:"▲ ";color:var(--ok)}
+  .arrow-down::before{content:"▼ ";color:var(--bad)}
+  .foot{margin-top:30px;color:var(--mut);font-size:12px;text-align:center}
+  .chip{display:inline-block;background:#eef2ff;color:#3730a3;border-radius:8px;padding:3px 9px;font-size:12px;font-weight:600;margin:2px}
+  canvas{max-height:280px}
+</style>
+</head>
+<body>
+<div class="wrap">
+  <header>
+    <h1>Trachtenflirt <span class="dot">·</span> SEO Dashboard</h1>
+    <div class="meta" id="meta"></div>
+  </header>
+
+  <div class="grid kpis" id="kpis"></div>
+
+  <div class="section card">
+    <h2>Klicks &amp; Impressionen – Wochen-Trend</h2>
+    <canvas id="trendChart"></canvas>
+  </div>
+
+  <div class="section card">
+    <h2>Ø Position – Wochen-Trend <span class="muted">(niedriger = besser)</span></h2>
+    <canvas id="posChart"></canvas>
+  </div>
+
+  <div class="section card">
+    <h2>🎯 Quick Wins <span class="muted">– kurz vor Top 3, CTR-Optimierung lohnt</span></h2>
+    <table id="quickWins"></table>
+  </div>
+
+  <div class="section grid two">
+    <div class="card"><h2>📈 Gewinner der Woche</h2><table id="gainers"></table></div>
+    <div class="card"><h2>📉 Verlierer der Woche</h2><table id="losers"></table></div>
+  </div>
+
+  <div class="section grid two">
+    <div class="card"><h2>💡 Neue Keywords</h2><table id="newKeywords"></table></div>
+    <div class="card"><h2>🔗 Top Seiten</h2><table id="topPages"></table></div>
+  </div>
+
+  <div class="section card">
+    <h2>🏆 Top Keywords</h2><table id="topKeywords"></table>
+  </div>
+
+  <div class="section card" id="shopifyCard" style="display:none">
+    <h2>🛠 Shopify SEO-Status</h2><div id="shopify"></div>
+  </div>
+
+  <div class="foot">Automatisch generiert · Datenquelle: Google Search Console · Trachtenflirt / Hangowear</div>
+</div>
+
+<script>
+const D = {"generated": "03.06.2026", "period": "2026-05-27 – 2026-06-02", "kpi": {"current": {"clicks": 669, "impressions": 25709, "ctr": 2.6, "position": 7.5}, "previous": {"clicks": 869, "impressions": 25965, "ctr": 3.35, "position": 9.1}}, "trend": [{"week": "2026-W12", "clicks": 468, "impressions": 21812, "ctr": 2.15, "position": 8.6}, {"week": "2026-W13", "clicks": 535, "impressions": 21134, "ctr": 2.53, "position": 7.9}, {"week": "2026-W14", "clicks": 539, "impressions": 20162, "ctr": 2.67, "position": 8.5}, {"week": "2026-W15", "clicks": 633, "impressions": 23006, "ctr": 2.75, "position": 7.9}, {"week": "2026-W16", "clicks": 672, "impressions": 24782, "ctr": 2.71, "position": 7.8}, {"week": "2026-W17", "clicks": 687, "impressions": 28405, "ctr": 2.42, "position": 8.6}, {"week": "2026-W18", "clicks": 754, "impressions": 27906, "ctr": 2.7, "position": 7.8}, {"week": "2026-W19", "clicks": 727, "impressions": 28128, "ctr": 2.58, "position": 9.2}, {"week": "2026-W20", "clicks": 916, "impressions": 27816, "ctr": 3.29, "position": 7.7}, {"week": "2026-W21", "clicks": 825, "impressions": 25199, "ctr": 3.27, "position": 8.9}, {"week": "2026-W22", "clicks": 818, "impressions": 28520, "ctr": 2.87, "position": 8.1}, {"week": "2026-W23", "clicks": 92, "impressions": 4797, "ctr": 1.92, "position": 6.3}], "quickWins": [{"kw": "trachtenmode damen", "position": 7.6, "impressions": 330, "ctr": 3.0, "clicks": 10}, {"kw": "trachtenshirt damen", "position": 5.0, "impressions": 264, "ctr": 3.8, "clicks": 10}, {"kw": "trachtenweste damen", "position": 6.5, "impressions": 185, "ctr": 3.8, "clicks": 7}, {"kw": "trachtenjeans damen", "position": 4.9, "impressions": 147, "ctr": 2.7, "clicks": 4}, {"kw": "oktoberfest outfit herren", "position": 7.8, "impressions": 109, "ctr": 0.9, "clicks": 1}, {"kw": "oktoberfest outfit", "position": 8.2, "impressions": 107, "ctr": 0.9, "clicks": 1}, {"kw": "trachten oberteil damen", "position": 5.9, "impressions": 88, "ctr": 2.3, "clicks": 2}, {"kw": "trachtenjeans herren", "position": 7.1, "impressions": 87, "ctr": 1.1, "clicks": 1}, {"kw": "trachten outfit herren", "position": 5.5, "impressions": 86, "ctr": 1.2, "clicks": 1}], "gainers": [{"kw": "damen trachtenmode", "from": 23.0, "to": 16.6, "delta": 6.4, "clicks": 1}, {"kw": "trachtenmode damen", "from": 11.5, "to": 7.6, "delta": 3.9, "clicks": 10}, {"kw": "trachten oberteil damen", "from": 8.0, "to": 5.9, "delta": 2.2, "clicks": 2}, {"kw": "hangowear trachten", "from": 5.3, "to": 3.2, "delta": 2.1, "clicks": 4}, {"kw": "apres ski outfit", "from": 7.9, "to": 6.0, "delta": 1.9, "clicks": 0}], "losers": [{"kw": "trachten outfit damen", "from": 2.8, "to": 5.2, "delta": 2.4, "clicks": 3}], "newKeywords": [{"kw": "oktoberfest outfit herren", "clicks": 1, "impressions": 109, "position": 7.8}, {"kw": "oktoberfest outfit", "clicks": 1, "impressions": 107, "position": 8.2}, {"kw": "trachten outfit herren", "clicks": 1, "impressions": 86, "position": 5.5}, {"kw": "moderne trachtenmode", "clicks": 2, "impressions": 55, "position": 4.0}, {"kw": "trachten weste damen", "clicks": 1, "impressions": 46, "position": 8.2}, {"kw": "trachtenoutfit herren", "clicks": 1, "impressions": 44, "position": 3.4}, {"kw": "oktoberfest kleidung damen große größen", "clicks": 1, "impressions": 42, "position": 4.9}, {"kw": "trachten oberteile damen", "clicks": 1, "impressions": 37, "position": 4.0}, {"kw": "coole läden in passau", "clicks": 1, "impressions": 35, "position": 3.6}, {"kw": "trachtenshirts damen", "clicks": 1, "impressions": 30, "position": 20.6}], "topKeywords": [{"kw": "trachtenflirt", "clicks": 54, "impressions": 320, "ctr": 16.9, "position": 1}, {"kw": "trachtenflirt rücksendung", "clicks": 21, "impressions": 35, "ctr": 60.0, "position": 1.2}, {"kw": "trachtenflirt waldkirchen", "clicks": 14, "impressions": 65, "ctr": 21.5, "position": 2.0}, {"kw": "hangowear", "clicks": 13, "impressions": 352, "ctr": 3.7, "position": 3.5}, {"kw": "vegane lederhose", "clicks": 12, "impressions": 93, "ctr": 12.9, "position": 1.2}, {"kw": "trachtenmode damen", "clicks": 10, "impressions": 330, "ctr": 3.0, "position": 7.6}, {"kw": "trachtenshirt damen", "clicks": 10, "impressions": 264, "ctr": 3.8, "position": 5.0}, {"kw": "trachten t shirt herren", "clicks": 8, "impressions": 126, "ctr": 6.3, "position": 4.3}, {"kw": "trachtenshirt herren", "clicks": 7, "impressions": 92, "ctr": 7.6, "position": 3.8}, {"kw": "trachtenweste damen", "clicks": 7, "impressions": 185, "ctr": 3.8, "position": 6.5}, {"kw": "hangowear passau", "clicks": 6, "impressions": 22, "ctr": 27.3, "position": 1.2}, {"kw": "trachten t shirt damen", "clicks": 6, "impressions": 67, "ctr": 9.0, "position": 3.0}, {"kw": "trachtenflirt retoure", "clicks": 6, "impressions": 9, "ctr": 66.7, "position": 1}, {"kw": "trachten t-shirts damen", "clicks": 5, "impressions": 37, "ctr": 13.5, "position": 2.9}, {"kw": "trachtenflirt rabattcode", "clicks": 5, "impressions": 8, "ctr": 62.5, "position": 1}], "topPages": [{"url": "/", "clicks": 82, "ctr": 4.0, "position": 11.7}, {"url": "/collections/t-shirts", "clicks": 60, "ctr": 3.7, "position": 4.6}, {"url": "/collections/trachtenmode-damen", "clicks": 58, "ctr": 2.0, "position": 7.6}, {"url": "/collections/hangowear", "clicks": 54, "ctr": 3.9, "position": 2.9}, {"url": "/collections/shirts-tops", "clicks": 47, "ctr": 2.6, "position": 5.4}, {"url": "/collections/vegane-lederhose-herren", "clicks": 45, "ctr": 15.6, "position": 2.6}, {"url": "/pages/versand", "clicks": 22, "ctr": 3.7, "position": 4.1}, {"url": "/collections/trachtenjeans-damen", "clicks": 19, "ctr": 3.1, "position": 6.4}, {"url": "/apps/returns/withdrawals", "clicks": 17, "ctr": 32.7, "position": 2.2}, {"url": "/pages/faq", "clicks": 16, "ctr": 13.7, "position": 3.7}, {"url": "/collections/oktoberfest-outfit-damen", "clicks": 15, "ctr": 1.2, "position": 10.3}, {"url": "/collections/hosen", "clicks": 14, "ctr": 1.6, "position": 7.0}], "shopify": null};
+
+function deltaHTML(cur, prev, invert=false, suffix=""){
+  const d = cur - prev;
+  const pct = prev ? (d/prev*100) : 0;
+  let cls = "flat", arrow = "→";
+  let good = invert ? d < 0 : d > 0;
+  let bad = invert ? d > 0 : d < 0;
+  if(Math.abs(d) < 0.0001){cls="flat";}
+  else if(good){cls="up";arrow="▲";}
+  else if(bad){cls="down";arrow="▼";}
+  const val = (Math.abs(d) >= 10 ? Math.round(d) : d.toFixed(1));
+  return `<span class="delta ${cls}">${arrow} ${val>0?'+':''}${val}${suffix} <span class="muted">(${pct>0?'+':''}${pct.toFixed(0)}%)</span></span>`;
+}
+
+function kpiCard(label, cur, prev, invert=false, suffix=""){
+  return `<div class="card kpi"><div class="label">${label}</div>
+    <div class="val">${cur}${suffix}</div>${deltaHTML(cur, prev, invert)}</div>`;
+}
+
+const k = D.kpi;
+document.getElementById('meta').innerHTML = `Zeitraum ${D.period} · Stand ${D.generated}`;
+document.getElementById('kpis').innerHTML =
+  kpiCard("Klicks", k.current.clicks, k.previous.clicks) +
+  kpiCard("Impressionen", k.current.impressions, k.previous.impressions) +
+  kpiCard("Ø CTR", k.current.ctr, k.previous.ctr, false, "%") +
+  kpiCard("Ø Position", k.current.position, k.previous.position, true);
+
+function table(el, cols, rows, rowFn){
+  const head = "<tr>" + cols.map(c=>`<th class="${c.num?'num':''}">${c.t}</th>`).join("") + "</tr>";
+  const body = rows.length ? rows.map(rowFn).join("") :
+    `<tr><td colspan="${cols.length}" class="muted">Keine Daten in diesem Zeitraum.</td></tr>`;
+  document.getElementById(el).innerHTML = head + body;
+}
+
+table("quickWins",
+  [{t:"Keyword"},{t:"Position",num:1},{t:"Impressionen",num:1},{t:"CTR",num:1},{t:"Potenzial"}],
+  D.quickWins,
+  r=>`<tr><td class="kw">${r.kw}</td><td class="num">${r.position}</td>
+   <td class="num">${r.impressions}</td><td class="num">${r.ctr}%</td>
+   <td><span class="pill ${r.ctr<2?'hot':'warn'}">${r.ctr<2?'hoch':'mittel'}</span></td></tr>`);
+
+table("gainers",
+  [{t:"Keyword"},{t:"Vorher→Jetzt"},{t:"Δ",num:1},{t:"Klicks",num:1}],
+  D.gainers,
+  r=>`<tr><td class="kw">${r.kw}</td><td>${r.from} → ${r.to}</td>
+   <td class="num arrow-up">${r.delta}</td><td class="num">${r.clicks}</td></tr>`);
+
+table("losers",
+  [{t:"Keyword"},{t:"Vorher→Jetzt"},{t:"Δ",num:1},{t:"Klicks",num:1}],
+  D.losers,
+  r=>`<tr><td class="kw">${r.kw}</td><td>${r.from} → ${r.to}</td>
+   <td class="num arrow-down">${r.delta}</td><td class="num">${r.clicks}</td></tr>`);
+
+table("newKeywords",
+  [{t:"Keyword"},{t:"Impr.",num:1},{t:"Pos.",num:1}],
+  D.newKeywords,
+  r=>`<tr><td class="kw">${r.kw}</td><td class="num">${r.impressions}</td><td class="num">${r.position}</td></tr>`);
+
+table("topPages",
+  [{t:"Seite"},{t:"Klicks",num:1},{t:"CTR",num:1},{t:"Pos.",num:1}],
+  D.topPages,
+  r=>`<tr><td class="kw">${r.url||'/'}</td><td class="num">${r.clicks}</td><td class="num">${r.ctr}%</td><td class="num">${r.position}</td></tr>`);
+
+table("topKeywords",
+  [{t:"Keyword"},{t:"Klicks",num:1},{t:"Impr.",num:1},{t:"CTR",num:1},{t:"Pos.",num:1}],
+  D.topKeywords,
+  r=>`<tr><td class="kw">${r.kw}</td><td class="num">${r.clicks}</td><td class="num">${r.impressions}</td><td class="num">${r.ctr}%</td><td class="num">${r.position}</td></tr>`);
+
+const labels = D.trend.map(t=>t.week.replace(/^\d+-/,''));
+new Chart(document.getElementById('trendChart'), {
+  type:'line',
+  data:{labels, datasets:[
+    {label:'Klicks', data:D.trend.map(t=>t.clicks), borderColor:'#c00000', backgroundColor:'rgba(192,0,0,.08)', fill:true, tension:.3, yAxisID:'y'},
+    {label:'Impressionen', data:D.trend.map(t=>t.impressions), borderColor:'#2563eb', backgroundColor:'rgba(37,99,235,.06)', fill:true, tension:.3, yAxisID:'y1'},
+  ]},
+  options:{responsive:true, interaction:{mode:'index',intersect:false},
+    scales:{y:{position:'left',title:{display:true,text:'Klicks'}},
+            y1:{position:'right',title:{display:true,text:'Impressionen'},grid:{drawOnChartArea:false}}}}
+});
+
+new Chart(document.getElementById('posChart'), {
+  type:'line',
+  data:{labels, datasets:[
+    {label:'Ø Position', data:D.trend.map(t=>t.position), borderColor:'#1b9500', backgroundColor:'rgba(27,149,0,.08)', fill:true, tension:.3},
+  ]},
+  options:{responsive:true, scales:{y:{reverse:true, title:{display:true,text:'Position'}}}}
+});
+
+if(D.shopify){
+  document.getElementById('shopifyCard').style.display='block';
+  const s = D.shopify;
+  document.getElementById('shopify').innerHTML = Object.entries(s)
+    .map(([k,v])=>`<span class="chip">${k}: ${v}</span>`).join(" ");
+}
+</script>
+</body>
+</html>
