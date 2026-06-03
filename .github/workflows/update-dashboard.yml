@@ -25,6 +25,18 @@ jobs:
         with:
           python-version: "3.12"
 
+      - name: Keyword-Research (Google Ads × GSC)
+        continue-on-error: true   # bricht das Dashboard nicht ab, falls Ads-API mal zickt
+        env:
+          GSC_CLIENT_ID: ${{ secrets.GSC_CLIENT_ID }}
+          GSC_CLIENT_SECRET: ${{ secrets.GSC_CLIENT_SECRET }}
+          GSC_REFRESH_TOKEN: ${{ secrets.GSC_REFRESH_TOKEN }}
+          GSC_SITE_URL: ${{ secrets.GSC_SITE_URL }}
+          ADS_REFRESH_TOKEN: ${{ secrets.ADS_REFRESH_TOKEN }}
+          ADS_DEVELOPER_TOKEN: ${{ secrets.ADS_DEVELOPER_TOKEN }}
+          ADS_CUSTOMER_ID: ${{ secrets.ADS_CUSTOMER_ID }}
+        run: python3 keyword_research.py
+
       - name: Generate dashboard
         env:
           GSC_CLIENT_ID: ${{ secrets.GSC_CLIENT_ID }}
@@ -33,11 +45,11 @@ jobs:
           GSC_SITE_URL: ${{ secrets.GSC_SITE_URL }}
         run: python3 generate.py
 
-      - name: Commit updated dashboard & history
+      - name: Commit updated dashboard & data
         run: |
           git config user.name "seo-dashboard-bot"
           git config user.email "actions@github.com"
-          git add index.html data/history.json
+          git add index.html data/history.json data/keywords.json
           git commit -m "Dashboard-Update $(date -u +%Y-%m-%d)" || echo "Keine Änderungen"
           git push
 

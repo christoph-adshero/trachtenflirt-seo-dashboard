@@ -162,6 +162,12 @@ def main():
     if os.path.exists(sp):
         shopify = json.load(open(sp))
 
+    # --- 5) Keyword-Chancen (optional, von keyword_research.py geschrieben) ---
+    keywords = None
+    kp = os.path.join(ROOT, "data", "keywords.json")
+    if os.path.exists(kp):
+        keywords = json.load(open(kp))
+
     payload = {
         "generated": today.strftime("%d.%m.%Y"),
         "period": f"{cur_start} – {cur_end}",
@@ -170,7 +176,7 @@ def main():
         "quickWins": quick_wins,
         "gainers": gainers[:10], "losers": losers[:10],
         "newKeywords": new_kw, "topKeywords": top_keywords, "topPages": top_pages,
-        "shopify": shopify,
+        "shopify": shopify, "keywords": keywords,
     }
 
     html = render(payload)
@@ -265,6 +271,28 @@ TEMPLATE = r"""<!doctype html>
 
   <div class="section card">
     <h2>🏆 Top Keywords</h2><table id="topKeywords"></table>
+  </div>
+
+  <div id="kwBlock" style="display:none">
+    <div class="section" style="display:flex;align-items:baseline;justify-content:space-between;flex-wrap:wrap;gap:6px">
+      <h2 style="font-size:16px;margin:0;font-weight:800">🔑 Keyword-Chancen <span class="muted" style="font-weight:400">– Suchvolumen (Google Ads) × deine Rankings</span></h2>
+      <span class="muted" id="kwStats" style="font-size:12px"></span>
+    </div>
+
+    <div class="section card" style="border-color:#1b9500;border-width:1.5px">
+      <h2>🎯 Near-Wins <span class="muted">– du rankst Seite 2-3, ein Schub reicht für Seite 1</span></h2>
+      <table id="kwNear"></table>
+    </div>
+
+    <div class="section grid two">
+      <div class="card"><h2>🚀 Strategische Lücken <span class="muted">– hohes Volumen, (noch) nicht gerankt</span></h2><table id="kwGaps"></table></div>
+      <div class="card"><h2>🏆 Hier dominierst du <span class="muted">– Top 3, halten &amp; ausbauen</span></h2><table id="kwWinning"></table></div>
+    </div>
+
+    <div class="section card">
+      <h2>📅 Saison-Timing <span class="muted">– Peak-Monat: rechtzeitig Content &amp; Ads hochfahren</span></h2>
+      <table id="kwSeason"></table>
+    </div>
   </div>
 
   <div class="section card" id="shopifyCard" style="display:none">
@@ -363,6 +391,38 @@ new Chart(document.getElementById('posChart'), {
   ]},
   options:{responsive:true, scales:{y:{reverse:true, title:{display:true,text:'Position'}}}}
 });
+
+function vol(n){ return n>=1000 ? (n/1000).toFixed(n>=10000?0:1)+'k' : n; }
+function compPill(c){ const cls = c==='hoch'?'hot':(c==='mittel'?'warn':''); return `<span class="pill ${cls}">${c}</span>`; }
+
+if(D.keywords){
+  const K = D.keywords;
+  document.getElementById('kwBlock').style.display='block';
+  document.getElementById('kwStats').textContent =
+    `${K.stats.ideas} Keyword-Ideen analysiert · Stand ${K.generated}`;
+
+  table("kwNear",
+    [{t:"Keyword"},{t:"Suchvol./Mt",num:1},{t:"Wettbewerb"},{t:"deine Pos.",num:1}],
+    K.nearWins,
+    r=>`<tr><td class="kw">${r.keyword}</td><td class="num">${vol(r.volume)}</td>
+     <td>${compPill(r.competition)}</td><td class="num">${r.position}</td></tr>`);
+
+  table("kwGaps",
+    [{t:"Keyword"},{t:"Vol./Mt",num:1},{t:"Wettb."}],
+    K.gaps,
+    r=>`<tr><td class="kw">${r.keyword}</td><td class="num">${vol(r.volume)}</td><td>${compPill(r.competition)}</td></tr>`);
+
+  table("kwWinning",
+    [{t:"Keyword"},{t:"Vol./Mt",num:1},{t:"Pos.",num:1}],
+    K.winning,
+    r=>`<tr><td class="kw">${r.keyword}</td><td class="num">${vol(r.volume)}</td><td class="num arrow-up">${r.position}</td></tr>`);
+
+  table("kwSeason",
+    [{t:"Keyword"},{t:"Ø Vol./Mt",num:1},{t:"Peak",num:1},{t:"Peak-Monat"}],
+    K.season,
+    r=>`<tr><td class="kw">${r.keyword}</td><td class="num">${vol(r.volume)}</td>
+     <td class="num"><strong>${vol(r.peak)}</strong></td><td>${r.peakMonth||'—'}</td></tr>`);
+}
 
 if(D.shopify){
   document.getElementById('shopifyCard').style.display='block';
