@@ -39,6 +39,8 @@ def get_token():
 
 
 def gsc_query(token, body):
+    # dataState "all" = inkl. frischer (noch nicht finalisierter) Daten -> matcht die GSC-Oberfläche exakt.
+    body.setdefault("dataState", "all")
     return post(API, body, {"Authorization": "Bearer " + token, "Content-Type": "application/json"}).get("rows", [])
 
 

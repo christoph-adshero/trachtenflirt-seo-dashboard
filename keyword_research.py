@@ -73,7 +73,7 @@ def gsc_positions(token):
     today = date.today()
     body = json.dumps({"startDate": (today - timedelta(days=30)).strftime("%Y-%m-%d"),
         "endDate": (today - timedelta(days=1)).strftime("%Y-%m-%d"),
-        "dimensions": ["query"], "rowLimit": 1000}).encode()
+        "dimensions": ["query"], "rowLimit": 1000, "dataState": "all"}).encode()
     req = urllib.request.Request(api, data=body, method="POST", headers={
         "Authorization": "Bearer " + token, "Content-Type": "application/json"})
     rows = json.loads(urllib.request.urlopen(req, timeout=60).read()).get("rows", [])
