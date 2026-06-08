@@ -2,8 +2,8 @@ name: Update SEO Dashboard
 
 on:
   schedule:
-    # Jeden Montag 05:30 UTC (07:30 Berlin) – nach Tagesabschluss der GSC-Daten
-    - cron: "30 5 * * 1"
+    # Jeden Montag 06:23 UTC (08:23 Berlin) – ungerade Minute = zuverlässiger
+    - cron: "23 6 * * 1"
   workflow_dispatch: {}   # manuelles Auslösen per Button möglich
 
 permissions:
