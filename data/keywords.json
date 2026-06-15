@@ -1,5 +1,5 @@
 {
-  "generated": "08.06.2026",
+  "generated": "15.06.2026",
   "stats": {
     "ideas": 2759,
     "ranked": 1000
@@ -11,17 +11,8 @@
       "competition": "hoch",
       "peak": 49500,
       "peakMonth": "Sep 2025",
-      "cpc": 1.17,
-      "position": 28.2
-    },
-    {
-      "keyword": "trachtenrock damen",
-      "volume": 4400,
-      "competition": "hoch",
-      "peak": 8100,
-      "peakMonth": "Sep 2025",
-      "cpc": 0.64,
-      "position": 28.4
+      "cpc": 0.97,
+      "position": 29.4
     },
     {
       "keyword": "damen lederhosen oktoberfest",
@@ -29,8 +20,17 @@
       "competition": "hoch",
       "peak": 8100,
       "peakMonth": "Sep 2025",
-      "cpc": 0.86,
+      "cpc": 0.77,
       "position": 14
+    },
+    {
+      "keyword": "lederhosen frauen",
+      "volume": 1300,
+      "competition": "hoch",
+      "peak": 3600,
+      "peakMonth": "Sep 2025",
+      "cpc": 0.75,
+      "position": 12.1
     },
     {
       "keyword": "trachtenshirts damen",
@@ -38,17 +38,8 @@
       "competition": "hoch",
       "peak": 2900,
       "peakMonth": "Sep 2025",
-      "cpc": 0.75,
-      "position": 25.4
-    },
-    {
-      "keyword": "bayerische tracht männer",
-      "volume": 1000,
-      "competition": "hoch",
-      "peak": 2900,
-      "peakMonth": "Sep 2025",
-      "cpc": 0.91,
-      "position": 20.5
+      "cpc": 0.58,
+      "position": 25.5
     },
     {
       "keyword": "landhausmode damen",
@@ -56,8 +47,8 @@
       "competition": "hoch",
       "peak": 1600,
       "peakMonth": "Sep 2025",
-      "cpc": 0.56,
-      "position": 23.3
+      "cpc": 0.58,
+      "position": 22.8
     },
     {
       "keyword": "trachtenkleider modern",
@@ -65,17 +56,17 @@
       "competition": "hoch",
       "peak": 880,
       "peakMonth": "Sep 2025",
-      "cpc": 0.7,
-      "position": 11.9
+      "cpc": 0.61,
+      "position": 12.0
     },
     {
-      "keyword": "oktoberfest tracht herren",
+      "keyword": "trachtenrock modern",
       "volume": 480,
       "competition": "hoch",
-      "peak": 2900,
+      "peak": 1000,
       "peakMonth": "Sep 2025",
-      "cpc": 1.18,
-      "position": 14.8
+      "cpc": 0.64,
+      "position": 21.3
     },
     {
       "keyword": "damen lederhosen outfit",
@@ -83,8 +74,17 @@
       "competition": "hoch",
       "peak": 1000,
       "peakMonth": "Sep 2025",
-      "cpc": 1.0,
+      "cpc": 0.69,
       "position": 14
+    },
+    {
+      "keyword": "damen trachtenmode günstig",
+      "volume": 320,
+      "competition": "hoch",
+      "peak": 1300,
+      "peakMonth": "Sep 2025",
+      "cpc": 0.75,
+      "position": 11.2
     },
     {
       "keyword": "trachtenshirt",
@@ -92,46 +92,46 @@
       "competition": "hoch",
       "peak": 880,
       "peakMonth": "Sep 2025",
-      "cpc": 0.84,
-      "position": 13.9
+      "cpc": 0.61,
+      "position": 13.2
     },
     {
-      "keyword": "bayrisch anziehen ohne dirndl",
-      "volume": 210,
+      "keyword": "günstige trachtenmode damen",
+      "volume": 320,
+      "competition": "hoch",
+      "peak": 1300,
+      "peakMonth": "Sep 2025",
+      "cpc": 0.75,
+      "position": 11.2
+    },
+    {
+      "keyword": "tracht herren elegant",
+      "volume": 260,
       "competition": "hoch",
       "peak": 880,
       "peakMonth": "Sep 2025",
-      "cpc": 0.61,
-      "position": 13.8
-    },
-    {
-      "keyword": "apres ski outfit fasching",
-      "volume": 170,
-      "competition": "hoch",
-      "peak": 880,
-      "peakMonth": "Jan 2026",
-      "cpc": 0.0,
-      "position": 14.6
+      "cpc": 0.53,
+      "position": 15.6
     }
   ],
   "improve": [
+    {
+      "keyword": "oktoberfest outfit herren",
+      "volume": 5400,
+      "competition": "hoch",
+      "peak": 33100,
+      "peakMonth": "Sep 2025",
+      "cpc": 0.68,
+      "position": 9.9
+    },
     {
       "keyword": "apres ski outfit",
       "volume": 5400,
       "competition": "hoch",
       "peak": 18100,
       "peakMonth": "Jan 2026",
-      "cpc": 1.08,
-      "position": 7.9
-    },
-    {
-      "keyword": "oktoberfest outfit herren",
-      "volume": 4400,
-      "competition": "hoch",
-      "peak": 27100,
-      "peakMonth": "Sep 2025",
-      "cpc": 0.82,
-      "position": 10.0
+      "cpc": 0.79,
+      "position": 7.6
     },
     {
       "keyword": "oktoberfest outfit damen",
@@ -139,8 +139,8 @@
       "competition": "hoch",
       "peak": 14800,
       "peakMonth": "Sep 2025",
-      "cpc": 0.8,
-      "position": 4.1
+      "cpc": 0.75,
+      "position": 4.2
     },
     {
       "keyword": "trachtenmode damen",
@@ -148,17 +148,8 @@
       "competition": "hoch",
       "peak": 8100,
       "peakMonth": "Sep 2025",
-      "cpc": 0.68,
-      "position": 9.3
-    },
-    {
-      "keyword": "tracht mann",
-      "volume": 2400,
-      "competition": "hoch",
-      "peak": 9900,
-      "peakMonth": "Sep 2025",
-      "cpc": 1.16,
-      "position": 8.9
+      "cpc": 0.52,
+      "position": 9.9
     },
     {
       "keyword": "trachtenweste damen",
@@ -166,8 +157,8 @@
       "competition": "hoch",
       "peak": 5400,
       "peakMonth": "Sep 2025",
-      "cpc": 0.51,
-      "position": 6.6
+      "cpc": 0.44,
+      "position": 6.7
     },
     {
       "keyword": "trachtenwesten damen",
@@ -175,8 +166,8 @@
       "competition": "hoch",
       "peak": 5400,
       "peakMonth": "Sep 2025",
-      "cpc": 0.51,
-      "position": 7.3
+      "cpc": 0.44,
+      "position": 7.6
     },
     {
       "keyword": "trachtenshirt damen",
@@ -184,7 +175,7 @@
       "competition": "hoch",
       "peak": 2900,
       "peakMonth": "Sep 2025",
-      "cpc": 0.75,
+      "cpc": 0.58,
       "position": 5.0
     },
     {
@@ -193,8 +184,8 @@
       "competition": "hoch",
       "peak": 4400,
       "peakMonth": "Sep 2025",
-      "cpc": 0.62,
-      "position": 6.1
+      "cpc": 0.53,
+      "position": 6.5
     },
     {
       "keyword": "trachten outfit herren",
@@ -202,8 +193,17 @@
       "competition": "hoch",
       "peak": 6600,
       "peakMonth": "Sep 2025",
-      "cpc": 1.47,
-      "position": 6.4
+      "cpc": 1.04,
+      "position": 7.0
+    },
+    {
+      "keyword": "trachtenjeans damen",
+      "volume": 1000,
+      "competition": "hoch",
+      "peak": 4400,
+      "peakMonth": "Sep 2025",
+      "cpc": 0.74,
+      "position": 5.1
     }
   ],
   "gaps": [
@@ -213,7 +213,7 @@
       "competition": "hoch",
       "peak": 135000,
       "peakMonth": "Sep 2025",
-      "cpc": 1.39,
+      "cpc": 1.27,
       "position": null
     },
     {
@@ -222,7 +222,7 @@
       "competition": "hoch",
       "peak": 60500,
       "peakMonth": "Sep 2025",
-      "cpc": 1.82,
+      "cpc": 1.36,
       "position": null
     },
     {
@@ -240,7 +240,7 @@
       "competition": "hoch",
       "peak": 49500,
       "peakMonth": "Sep 2025",
-      "cpc": 1.17,
+      "cpc": 0.97,
       "position": null
     },
     {
@@ -249,17 +249,17 @@
       "competition": "hoch",
       "peak": 27100,
       "peakMonth": "Sep 2025",
-      "cpc": 0.62,
+      "cpc": 0.59,
       "position": null
     },
     {
-      "keyword": "trachtenbluse damen",
+      "keyword": "damen trachtenbluse",
       "volume": 6600,
       "competition": "hoch",
       "peak": 27100,
       "peakMonth": "Sep 2025",
-      "cpc": 0.64,
-      "position": 33.9
+      "cpc": 0.56,
+      "position": 36
     },
     {
       "keyword": "tracht herren",
@@ -267,7 +267,7 @@
       "competition": "hoch",
       "peak": 27100,
       "peakMonth": "Sep 2025",
-      "cpc": 1.14,
+      "cpc": 0.99,
       "position": null
     },
     {
@@ -276,7 +276,7 @@
       "competition": "hoch",
       "peak": 27100,
       "peakMonth": "Sep 2025",
-      "cpc": 0.64,
+      "cpc": 0.56,
       "position": null
     },
     {
@@ -285,7 +285,7 @@
       "competition": "hoch",
       "peak": 27100,
       "peakMonth": "Sep 2025",
-      "cpc": 1.23,
+      "cpc": 1.0,
       "position": null
     },
     {
@@ -294,7 +294,7 @@
       "competition": "hoch",
       "peak": 27100,
       "peakMonth": "Sep 2025",
-      "cpc": 1.14,
+      "cpc": 0.99,
       "position": null
     },
     {
@@ -303,17 +303,17 @@
       "competition": "hoch",
       "peak": 27100,
       "peakMonth": "Sep 2025",
-      "cpc": 1.23,
+      "cpc": 1.0,
       "position": null
     },
     {
-      "keyword": "trachtenrock",
-      "volume": 5400,
+      "keyword": "trachten damenschuhe",
+      "volume": 6600,
       "competition": "hoch",
-      "peak": 12100,
+      "peak": 22200,
       "peakMonth": "Sep 2025",
-      "cpc": 0.51,
-      "position": 44.2
+      "cpc": 0.58,
+      "position": null
     }
   ],
   "winning": [
@@ -327,40 +327,13 @@
       "position": 1
     },
     {
-      "keyword": "trachten outfit damen",
-      "volume": 480,
-      "competition": "hoch",
-      "peak": 1600,
-      "peakMonth": "Sep 2025",
-      "cpc": 0.78,
-      "position": 2.9
-    },
-    {
-      "keyword": "moderne trachtenmode damen",
-      "volume": 390,
-      "competition": "hoch",
-      "peak": 1000,
-      "peakMonth": "Sep 2025",
-      "cpc": 0.6,
-      "position": 2.9
-    },
-    {
-      "keyword": "trachtenmode damen modern",
-      "volume": 390,
-      "competition": "hoch",
-      "peak": 1000,
-      "peakMonth": "Sep 2025",
-      "cpc": 0.6,
-      "position": 2.6
-    },
-    {
       "keyword": "trachten outfit herren modern",
       "volume": 390,
       "competition": "hoch",
       "peak": 1900,
       "peakMonth": "Sep 2025",
-      "cpc": 0.75,
-      "position": 2.1
+      "cpc": 0.64,
+      "position": 2.3
     },
     {
       "keyword": "trachtenbody schwarz",
@@ -368,8 +341,35 @@
       "competition": "hoch",
       "peak": 880,
       "peakMonth": "Sep 2025",
-      "cpc": 0.65,
+      "cpc": 0.64,
       "position": 1.4
+    },
+    {
+      "keyword": "moderne trachtenmode damen",
+      "volume": 320,
+      "competition": "hoch",
+      "peak": 1000,
+      "peakMonth": "Sep 2025",
+      "cpc": 0.49,
+      "position": 2.9
+    },
+    {
+      "keyword": "trachten hose herren",
+      "volume": 320,
+      "competition": "hoch",
+      "peak": 1300,
+      "peakMonth": "Sep 2025",
+      "cpc": 0.79,
+      "position": 1.5
+    },
+    {
+      "keyword": "trachtenmode damen modern",
+      "volume": 320,
+      "competition": "hoch",
+      "peak": 1000,
+      "peakMonth": "Sep 2025",
+      "cpc": 0.49,
+      "position": 2.3
     },
     {
       "keyword": "flippige trachtenmode damen",
@@ -377,8 +377,8 @@
       "competition": "hoch",
       "peak": 720,
       "peakMonth": "Sep 2025",
-      "cpc": 0.63,
-      "position": 1.1
+      "cpc": 0.44,
+      "position": 2.3
     },
     {
       "keyword": "trachten outfit damen modern",
@@ -386,8 +386,8 @@
       "competition": "hoch",
       "peak": 720,
       "peakMonth": "Sep 2025",
-      "cpc": 1.0,
-      "position": 1.6
+      "cpc": 0.45,
+      "position": 1.4
     }
   ],
   "season": [
@@ -397,7 +397,7 @@
       "competition": "hoch",
       "peak": 135000,
       "peakMonth": "Sep 2025",
-      "cpc": 1.39,
+      "cpc": 1.27,
       "position": null
     },
     {
@@ -406,7 +406,7 @@
       "competition": "hoch",
       "peak": 60500,
       "peakMonth": "Sep 2025",
-      "cpc": 1.82,
+      "cpc": 1.36,
       "position": null
     },
     {
@@ -415,8 +415,8 @@
       "competition": "hoch",
       "peak": 49500,
       "peakMonth": "Sep 2025",
-      "cpc": 1.17,
-      "position": 28.2
+      "cpc": 0.97,
+      "position": 29.4
     },
     {
       "keyword": "trachtenwesten herren",
@@ -424,26 +424,26 @@
       "competition": "hoch",
       "peak": 49500,
       "peakMonth": "Sep 2025",
-      "cpc": 1.17,
+      "cpc": 0.97,
       "position": null
     },
     {
       "keyword": "oktoberfest outfit herren",
-      "volume": 4400,
+      "volume": 5400,
       "competition": "hoch",
-      "peak": 27100,
+      "peak": 33100,
       "peakMonth": "Sep 2025",
-      "cpc": 0.82,
-      "position": 10.0
+      "cpc": 0.68,
+      "position": 9.9
     },
     {
-      "keyword": "trachtenbluse damen",
+      "keyword": "damen trachtenbluse",
       "volume": 6600,
       "competition": "hoch",
       "peak": 27100,
       "peakMonth": "Sep 2025",
-      "cpc": 0.64,
-      "position": 33.9
+      "cpc": 0.56,
+      "position": 36
     },
     {
       "keyword": "tracht herren",
@@ -451,7 +451,7 @@
       "competition": "hoch",
       "peak": 27100,
       "peakMonth": "Sep 2025",
-      "cpc": 1.14,
+      "cpc": 0.99,
       "position": null
     },
     {
@@ -460,7 +460,7 @@
       "competition": "hoch",
       "peak": 27100,
       "peakMonth": "Sep 2025",
-      "cpc": 0.64,
+      "cpc": 0.56,
       "position": null
     }
   ]
